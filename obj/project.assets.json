@@ -53,6 +53,12 @@
           "jQuery": "1.7.0"
         }
       },
+      "jQuery.Validation/1.19.3": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.4.4"
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.7": {
         "type": "package",
         "dependencies": {
@@ -751,6 +757,13 @@
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {}
+        }
+      },
+      "Microsoft.jQuery.Unobtrusive.Validation/3.2.12": {
+        "type": "package",
+        "dependencies": {
+          "jQuery": "1.8.0",
+          "jQuery.Validation": "1.8.0.1"
         }
       },
       "Microsoft.NETCore.Platforms/3.1.0": {
@@ -2866,6 +2879,20 @@
         "jquery.datatables.nuspec"
       ]
     },
+    "jQuery.Validation/1.19.3": {
+      "sha512": "Y9oA2cqUyuJYd+egyp/2VwsUT4mH1X31R7i74VTm1i/7XhnSK0iAWsPvQBXxXz6BhOnEDhAQ0u12Aj830/e1YA==",
+      "type": "package",
+      "path": "jquery.validation/1.19.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery.validate-vsdoc.js",
+        "Content/Scripts/jquery.validate.js",
+        "Content/Scripts/jquery.validate.min.js",
+        "jquery.validation.1.19.3.nupkg.sha512",
+        "jquery.validation.nuspec"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.7": {
       "sha512": "/76fAHknzvFqbznS6Uj2sOyE9rJB3PltY+f53TH8dX9RiGhk02EhuFCWljSj5nnqKaTsmma8DFR50OGyQ4yJ1g==",
       "type": "package",
@@ -3974,6 +4001,19 @@
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
         "microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
+      ]
+    },
+    "Microsoft.jQuery.Unobtrusive.Validation/3.2.12": {
+      "sha512": "zu4ELNl5KW5vVfEeqeTxYFg/VvVmogCQDxNXnPDT9MjbtNpNdZVoRkq0nQAbtRo031PEUQsz2+3Qlb8RSInDOw==",
+      "type": "package",
+      "path": "microsoft.jquery.unobtrusive.validation/3.2.12",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Content/Scripts/jquery.validate.unobtrusive.js",
+        "Content/Scripts/jquery.validate.unobtrusive.min.js",
+        "microsoft.jquery.unobtrusive.validation.3.2.12.nupkg.sha512",
+        "microsoft.jquery.unobtrusive.validation.nuspec"
       ]
     },
     "Microsoft.NETCore.Platforms/3.1.0": {
@@ -8720,6 +8760,8 @@
       "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation >= 5.0.9",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.9",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.9",
+      "Microsoft.jQuery.Unobtrusive.Validation >= 3.2.12",
+      "jQuery.Validation >= 1.19.3",
       "jquery.datatables >= 1.10.15",
       "toastr >= 2.1.1",
       "twitter.typeahead >= 0.11.1"
@@ -8799,6 +8841,14 @@
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",
             "version": "[5.0.9, )"
+          },
+          "Microsoft.jQuery.Unobtrusive.Validation": {
+            "target": "Package",
+            "version": "[3.2.12, )"
+          },
+          "jQuery.Validation": {
+            "target": "Package",
+            "version": "[1.19.3, )"
           },
           "jquery.datatables": {
             "target": "Package",

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CvFnPq49sLbvE2AOz2sidUPE5A9wrjn4r2ZXDWMK0rBZI6Xd817rD3gbOfFDN8rwX6Vx6F7vwa9CSn8xzvvzjw==",
+  "dgSpecHash": "4PihBbPHn5GRx1M5fn86SIwanbK6ZPsAGJUmzmg1u3rWv+Kjmz3ZvuLXcmjxwnhO6uTXoKuzb8seQonQ1nKKAA==",
   "success": true,
   "projectFilePath": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\LibApp.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\dwidl\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\jquery\\1.12.4\\jquery.1.12.4.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\jquery.datatables\\1.10.15\\jquery.datatables.1.10.15.nupkg.sha512",
+    "C:\\Users\\dwidl\\.nuget\\packages\\jquery.validation\\1.19.3\\jquery.validation.1.19.3.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.aspnet.webapi.client\\5.2.7\\microsoft.aspnet.webapi.client.5.2.7.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.2.7\\microsoft.aspnet.webapi.core.5.2.7.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.9\\microsoft.aspnetcore.cryptography.internal.5.0.9.nupkg.sha512",
@@ -54,6 +55,7 @@
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.identitymodel.protocols\\5.6.0\\microsoft.identitymodel.protocols.5.6.0.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\5.6.0\\microsoft.identitymodel.protocols.openidconnect.5.6.0.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.identitymodel.tokens\\5.6.0\\microsoft.identitymodel.tokens.5.6.0.nupkg.sha512",
+    "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.jquery.unobtrusive.validation\\3.2.12\\microsoft.jquery.unobtrusive.validation.3.2.12.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.netcore.targets\\1.1.3\\microsoft.netcore.targets.1.1.3.nupkg.sha512",
     "C:\\Users\\dwidl\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",

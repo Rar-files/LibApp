@@ -76,6 +76,14 @@
               "target": "Package",
               "version": "[5.0.9, )"
             },
+            "Microsoft.jQuery.Unobtrusive.Validation": {
+              "target": "Package",
+              "version": "[3.2.12, )"
+            },
+            "jQuery.Validation": {
+              "target": "Package",
+              "version": "[1.19.3, )"
+            },
             "jquery.datatables": {
               "target": "Package",
               "version": "[1.10.15, )"
