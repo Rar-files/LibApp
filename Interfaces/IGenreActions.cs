@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using LibApp.Models;
- namespace LibApp.Interfaces
+
+namespace LibApp.Interfaces
  {
      public interface IGenreActions
      {
@@ -9,5 +10,6 @@ using LibApp.Models;
          void Delete(int id);
          void Add(Genre genre);
          void Update(Genre genre);
+         void Save();
      }
  }

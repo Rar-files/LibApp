@@ -14,29 +14,24 @@ namespace LibApp.Controllers
     public class BooksController : Controller
     {
         private readonly BookRepository _bookRep;
-        private readonly GenreRepository _genreRep;
+        private readonly GenreRepository _genresRep;
 
         public BooksController(ApplicationDbContext context)
         {
             _bookRep = new BookRepository(context);
-            _genreRep = new GenreRepository(context);
+            _genresRep = new GenreRepository(context);
         }
 
         public IActionResult Index()
         {
-            var books = _bookRep.GetBooks()
-                .Where(book => book.Genre != null)
-                .ToList();
+            var books = _bookRep.GetBooks().ToList();
 
             return View(books);
         }
 
         public IActionResult Details(int id)
         {
-            var book = _bookRep.GetBooks()
-                .Where(book => book.Genre != null)
-                .ToList()
-                .SingleOrDefault(b => b.Id == id);
+            var book = _bookRep.GetBookById(id);
                 
 
             return View(book);
@@ -53,7 +48,7 @@ namespace LibApp.Controllers
             var viewModel = new BookFormViewModel
             {
                 Book = book,
-                Genres = _genreRep.GetGenres().ToList()
+                Genres = _genresRep.GetGenres().ToList()
             };
 
             return View("BookForm", viewModel);
@@ -61,7 +56,7 @@ namespace LibApp.Controllers
 
         public IActionResult New()
         {
-            var genres = _genreRep.GetGenres().ToList();
+            var genres = _genresRep.GetGenres().ToList();
 
             var viewModel = new BookFormViewModel
             {

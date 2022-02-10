@@ -10,5 +10,6 @@ namespace LibApp.Interfaces
         void Delete(int id);
         void Add(Book book);
         void Update(Book book);
+        void Save();
     }   
 }
