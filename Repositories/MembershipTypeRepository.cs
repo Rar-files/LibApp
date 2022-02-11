@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using LibApp.Models;
 using LibApp.Data;
 using LibApp.Interfaces;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace LibApp.Respositories
 {
@@ -21,5 +23,22 @@ namespace LibApp.Respositories
         public void Delete(int id)=> _context.MembershipTypes.Remove(GetMsTById(id));
         public void Update(MembershipType MsT) => _context.MembershipTypes.Update(MsT);
         public void Save() => _context.SaveChanges();
+
+        public async Task<IEnumerable<MembershipType>> GetMsTsAsync() => await _context.MembershipTypes.ToListAsync();
+        public async Task<MembershipType> GetMsTByIdAsync(int id) => await _context.MembershipTypes.FindAsync(id);
+        public async Task DeleteAsync(int id)
+        {
+            _context.MembershipTypes.Remove(GetMsTById(id));
+            await SaveAsync();
+        }
+
+        public async Task AddAsync(MembershipType MsT) => await _context.MembershipTypes.AddAsync(MsT);
+        public async Task UpdateAsync(MembershipType MsT)
+        {
+            _context.MembershipTypes.Update(MsT);
+            await SaveAsync();
+        }
+
+        public async Task SaveAsync() => await _context.SaveChangesAsync();
     }
 }

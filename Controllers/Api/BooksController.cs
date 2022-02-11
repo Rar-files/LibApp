@@ -1,14 +1,11 @@
-﻿using AutoMapper;
-using LibApp.Data;
-using LibApp.Dtos;
+﻿using LibApp.Data;
 using LibApp.Models;
 using LibApp.Respositories;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using System;
 
 namespace LibApp.Controllers.Api
 {
@@ -16,27 +13,45 @@ namespace LibApp.Controllers.Api
     [ApiController]
     public class BooksController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly BookRepository _bookRep;
     
-        public BooksController(ApplicationDbContext context, IMapper mapper)
+        public BooksController(ApplicationDbContext context)
         {
             _bookRep = new BookRepository(context);
-            _mapper = mapper;
         }
 
         // GET api/books/
         [HttpGet]
-        public IEnumerable<BookDto> GetBooks(string query = null)
+        public IEnumerable<Book> GetBooks() => _bookRep.GetBooks();
+
+        // GET api/books/
+        [HttpGet("{id:int}")]
+        public Book GetBookById(int id) => _bookRep.GetBookById(id);
+
+        [HttpDelete("{id:int}")]
+        public void Delete(int id) => _bookRep.Delete(id);
+
+        [HttpPost]
+        public async Task<ActionResult> Add(Book book)
         {
-            var booksQuery = _bookRep.GetBooks().Where(b => b.NumberAvailable > 0);
-
-            if (!String.IsNullOrWhiteSpace(query))
+            try
             {
-                booksQuery = booksQuery.Where(b => b.Name.Contains(query));
-            }
+                if (book == null)
+                    return BadRequest();
 
-            return booksQuery.ToList().Select(_mapper.Map<Book, BookDto>);
+                await _bookRep.AddAsync(book);
+
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError,
+                    "Error creating new employee record");
+            }
         }
+
+        [HttpPut("{id:int}")]
+        public void Update(int id) => _bookRep.Update(_bookRep.GetBookById(id));
+
     }
 }
