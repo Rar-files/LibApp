@@ -8,16 +8,16 @@ namespace LibApp.Interfaces
      public interface IMembershipTypeActions
      {
         //Methods
-        IEnumerable<MembershipType> GetMsTs();
-        MembershipType GetMsTById(int id);
+        IEnumerable<MembershipType> Get();
+        MembershipType GetById(int id);
         void Delete(int id);
         void Add(MembershipType MsT);
         void Update(MembershipType MsT);
         void Save();
 
     //AsyncedMethods
-        Task<IEnumerable<MembershipType>> GetMsTsAsync();
-        Task<MembershipType> GetMsTByIdAsync(int id);
+        Task<IEnumerable<MembershipType>> GetAsync();
+        Task<MembershipType> GetByIdAsync(int id);
         Task DeleteAsync(int id);
         Task AddAsync(MembershipType MsT);
         Task UpdateAsync(MembershipType MsT);

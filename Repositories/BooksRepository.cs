@@ -18,19 +18,19 @@ namespace LibApp.Respositories
         }
 
         //Methods
-        public IEnumerable<Book> GetBooks() => _context.Books.Include(b => b.Genre);
-        public Book GetBookById(int id) => _context.Books.Include(b => b.Genre).First(b => b.Id == id);
+        public IEnumerable<Book> Get() => _context.Books.Include(b => b.Genre);
+        public Book GetById(int id) => _context.Books.Include(b => b.Genre).First(b => b.Id == id);
         public void Add(Book book)=> _context.Books.Add(book);
-        public void Delete(int id) => _context.Books.Remove(GetBookById(id));
+        public void Delete(int id) => _context.Books.Remove(GetById(id));
         public void Update(Book book) => _context.Books.Update(book);
         public void Save() => _context.SaveChanges();
 
         //AsyncedMethods
-        public async Task<IEnumerable<Book>> GetBooksAsync() => await _context.Books.Include(b => b.Genre).ToListAsync();
-        public async Task<Book> GetBookByIdAsync(int id) => await _context.Books.Include(b => b.Genre).SingleOrDefaultAsync(b => b.Id == id);
+        public async Task<IEnumerable<Book>> GetAsync() => await _context.Books.Include(b => b.Genre).ToListAsync();
+        public async Task<Book> GetByIdAsync(int id) => await _context.Books.Include(b => b.Genre).SingleOrDefaultAsync(b => b.Id == id);
         public async Task DeleteAsync(int id)
         {
-            _context.Books.Remove(GetBookById(id));
+            _context.Books.Remove(GetById(id));
             await SaveAsync();
         } 
         public async Task AddAsync(Book book) => await _context.Books.AddAsync(book);

@@ -12,37 +12,37 @@ namespace LibApp.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BooksController : ControllerBase
+    public class CustomerController : ControllerBase
     {
-        private readonly BookRepository _bookRep;
+        private readonly CustomersRepository _customersRep;
     
-        public BooksController(ApplicationDbContext context)
+        public CustomerController(ApplicationDbContext context)
         {
-            _bookRep = new BookRepository(context);
+            _customersRep = new CustomersRepository(context);
         }
 
-        // GET api/books/
+        // GET api/Customers/
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Book>>> GetBooks()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
             try
             {
-                return (await _bookRep.GetAsync()).ToList();
+                return (await _customersRep.GetAsync()).ToList();
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error creating new employee record");
             }
         }
 
-        // GET api/books/{id}
+        // GET api/Customers/{id}
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Book>> GetBookById(int id)
+        public async Task<ActionResult<Customer>> GetCustomerById(int id)
         {
             try
             {
-                var result = await _bookRep.GetByIdAsync(id);
+                var result = await _customersRep.GetByIdAsync(id);
                 if (result == null) return NotFound();
 
                 return result;
@@ -50,66 +50,66 @@ namespace LibApp.Controllers.Api
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error creating new employee record");
             }
         }
 
-        // Delete api/books/{id}
+        // Delete api/Customers/{id}
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                var bookToDelete = await _bookRep.GetByIdAsync(id);
+                var CustomerToDelete = await _customersRep.GetByIdAsync(id);
 
-                if (bookToDelete == null)
-                    return NotFound($"Book with Id = {id} not found");
+                if (CustomerToDelete == null)
+                    return NotFound($"Customer with Id = {id} not found");
 
-                await _bookRep.DeleteAsync(id);
+                await _customersRep.DeleteAsync(id);
                 return Ok();
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error creating new customer record");
             }
         }
 
-        // Post api/books/
+        // Post api/Customers/
         [HttpPost]
-        public async Task<ActionResult> Add(Book book)
+        public async Task<ActionResult> Add(Customer Customer)
         {
             try
             {
-                if (book == null)
+                if (Customer == null)
                     return BadRequest();
 
-                await _bookRep.AddAsync(book);
+                await _customersRep.AddAsync(Customer);
 
                 return Ok();
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error creating new Customer record");
             }
         }
 
-        // Put api/books/{id}
+        // Put api/Customers/{id}
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Update(int id, Book book)
+        public async Task<ActionResult> Update(int id, Customer Customer)
         {
             try
             {
-                if (id != book.Id)
-                    return BadRequest("Book ID mismatch");
+                if (id != Customer.Id)
+                    return BadRequest("Customer ID mismatch");
 
-                var bookToUpdate = await _bookRep.GetByIdAsync(id);
+                var CustomerToUpdate = await _customersRep.GetByIdAsync(id);
 
-                if (bookToUpdate == null)
-                    return NotFound($"Book with Id = {id} not found");
+                if (CustomerToUpdate == null)
+                    return NotFound($"Customer with Id = {id} not found");
 
-                await _bookRep.UpdateAsync(book);
+                await _customersRep.UpdateAsync(Customer);
                 return Ok();
             }
             catch (Exception)

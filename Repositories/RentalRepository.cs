@@ -17,19 +17,19 @@ namespace LibApp.Respositories
         }
 
         //Methods
-        public IEnumerable<Rental> GetRentals() => _context.Rentals;
-        public Rental GetRentalById(int id) => _context.Rentals.Find(id);
+        public IEnumerable<Rental> Get() => _context.Rentals;
+        public Rental GetById(int id) => _context.Rentals.Find(id);
         public void Add(Rental rental)=> _context.Rentals.Add(rental);
-        public void Delete(int id)=> _context.Rentals.Remove(GetRentalById(id));
+        public void Delete(int id)=> _context.Rentals.Remove(GetById(id));
         public void Update(Rental rental) => _context.Rentals.Update(rental);
         public void Save() => _context.SaveChanges();
 
         //AsyncedMethods
-        public async Task<IEnumerable<Rental>> GetRentalsAsync() => await _context.Rentals.ToListAsync();
-        public async Task<Rental> GetRentalByIdAsync(int id) => await _context.Rentals.FindAsync(id);
+        public async Task<IEnumerable<Rental>> GetAsync() => await _context.Rentals.ToListAsync();
+        public async Task<Rental> GetByIdAsync(int id) => await _context.Rentals.FindAsync(id);
         public async Task DeleteAsync(int id)
         {
-            _context.Rentals.Remove(GetRentalById(id));
+            _context.Rentals.Remove(GetById(id));
             await SaveAsync();
         }
 

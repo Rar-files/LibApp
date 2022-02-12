@@ -17,18 +17,18 @@ namespace LibApp.Respositories
         }
 
         
-        public IEnumerable<MembershipType> GetMsTs() => _context.MembershipTypes;
-        public MembershipType GetMsTById(int id) => _context.MembershipTypes.Find(id);
+        public IEnumerable<MembershipType> Get() => _context.MembershipTypes;
+        public MembershipType GetById(int id) => _context.MembershipTypes.Find(id);
         public void Add(MembershipType MsT)=> _context.MembershipTypes.Add(MsT);
-        public void Delete(int id)=> _context.MembershipTypes.Remove(GetMsTById(id));
+        public void Delete(int id)=> _context.MembershipTypes.Remove(GetById(id));
         public void Update(MembershipType MsT) => _context.MembershipTypes.Update(MsT);
         public void Save() => _context.SaveChanges();
 
-        public async Task<IEnumerable<MembershipType>> GetMsTsAsync() => await _context.MembershipTypes.ToListAsync();
-        public async Task<MembershipType> GetMsTByIdAsync(int id) => await _context.MembershipTypes.FindAsync(id);
+        public async Task<IEnumerable<MembershipType>> GetAsync() => await _context.MembershipTypes.ToListAsync();
+        public async Task<MembershipType> GetByIdAsync(int id) => await _context.MembershipTypes.FindAsync(id);
         public async Task DeleteAsync(int id)
         {
-            _context.MembershipTypes.Remove(GetMsTById(id));
+            _context.MembershipTypes.Remove(GetById(id));
             await SaveAsync();
         }
 
