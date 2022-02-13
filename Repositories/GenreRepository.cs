@@ -26,7 +26,7 @@ namespace LibApp.Respositories
         public void Save() => _context.SaveChanges();
 
         public async Task<IEnumerable<Genre>> GetAsync() => await _context.Genre.ToListAsync();
-        public async Task<Genre> GetByIdAsync(int id) => await _context.Genre.FindAsync(id);
+        public async Task<Genre> GetByIdAsync(int id) => await _context.Genre.SingleOrDefaultAsync(g => g.Id == id);
         public async Task DeleteAsync(int id)
         {
             _context.Genre.Remove(GetById(id));

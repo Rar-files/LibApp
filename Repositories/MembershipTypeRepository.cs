@@ -25,7 +25,7 @@ namespace LibApp.Respositories
         public void Save() => _context.SaveChanges();
 
         public async Task<IEnumerable<MembershipType>> GetAsync() => await _context.MembershipTypes.ToListAsync();
-        public async Task<MembershipType> GetByIdAsync(int id) => await _context.MembershipTypes.FindAsync(id);
+        public async Task<MembershipType> GetByIdAsync(int id) => await _context.MembershipTypes.SingleOrDefaultAsync(m => m.Id == id);
         public async Task DeleteAsync(int id)
         {
             _context.MembershipTypes.Remove(GetById(id));

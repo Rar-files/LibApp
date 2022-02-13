@@ -26,7 +26,7 @@ namespace LibApp.Respositories
 
         //AsyncedMethods
         public async Task<IEnumerable<Rental>> GetAsync() => await _context.Rentals.ToListAsync();
-        public async Task<Rental> GetByIdAsync(int id) => await _context.Rentals.FindAsync(id);
+        public async Task<Rental> GetByIdAsync(int id) => await _context.Rentals.SingleOrDefaultAsync(r => r.Id == id);
         public async Task DeleteAsync(int id)
         {
             _context.Rentals.Remove(GetById(id));

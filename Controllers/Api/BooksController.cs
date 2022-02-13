@@ -32,7 +32,7 @@ namespace LibApp.Controllers.Api
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error while getting records");
             }
         }
 
@@ -50,7 +50,7 @@ namespace LibApp.Controllers.Api
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error while getting record");
             }
         }
 
@@ -71,7 +71,7 @@ namespace LibApp.Controllers.Api
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error while deleting record");
             }
         }
 
@@ -91,7 +91,7 @@ namespace LibApp.Controllers.Api
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError,
-                    "Error creating new book record");
+                    "Error creating new record");
             }
         }
 
