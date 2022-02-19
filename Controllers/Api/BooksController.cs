@@ -1,6 +1,8 @@
 ﻿using LibApp.Data;
 using LibApp.Models;
+using LibApp.Dtos;
 using LibApp.Respositories;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -15,10 +17,12 @@ namespace LibApp.Controllers.Api
     public class BooksController : ControllerBase
     {
         private readonly BookRepository _bookRep;
+        private readonly IMapper _mapper;
     
-        public BooksController(ApplicationDbContext context)
+        public BooksController(ApplicationDbContext context, IMapper mapper)
         {
             _bookRep = new BookRepository(context);
+            _mapper = mapper;
         }
 
         // GET api/books/
@@ -27,7 +31,11 @@ namespace LibApp.Controllers.Api
         {
             try
             {
-                return (await _bookRep.GetAsync()).ToList();
+                var books = (await _bookRep.GetAsync())
+                .ToList()
+                .Select(_mapper.Map<Book, BookDto>);
+
+                return Ok(books);
             }
             catch (Exception)
             {
