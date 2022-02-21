@@ -30,14 +30,14 @@
         $(document).ready(function () {
             $("#customers").DataTable({
                 ajax: {
-                    url: "/api/customers",
+                    url: "/api/customers/",
                     dataSrc: ""
                 },
                 columns: [
                     {
                         data: "name",
                         render: function (data, type, customer) {
-                            return "<a href='customers/edit/" + customer.id + "'>" + customer.name + "</a>";
+                            return "<a href='customers/details/" + customer.id + "'>" + customer.name + "</a>";
                         }
                     },
                     {
@@ -57,9 +57,10 @@
         $(document).ready(function () {
 
             var table = $("#customers").DataTable();
-            $("#customers").on("click", ".js-delete", function () {
 
+            $("#customers").on("click", ".js-delete", function () {
                 var button = $(this);
+
                 bootbox.confirm({
                     message: "Confirm customer deletion?",
                     buttons: {
