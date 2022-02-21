@@ -50,10 +50,10 @@ namespace LibApp.Controllers.Api
         {
             try
             {
-                var result = await _bookRep.GetByIdAsync(id);
-                if (result == null) return NotFound();
+                var book = await _bookRep.GetByIdAsync(id);
+                if (book == null) return NotFound();
 
-                return result;
+                return Ok(_mapper.Map<Book, BookDto>(book));
             }
             catch (Exception)
             {
@@ -85,14 +85,14 @@ namespace LibApp.Controllers.Api
 
         // Post api/books/
         [HttpPost]
-        public async Task<ActionResult> Add(Book book)
+        public async Task<ActionResult> Add(BookDto book)
         {
             try
             {
                 if (book == null)
                     return BadRequest();
 
-                await _bookRep.AddAsync(book);
+                await _bookRep.AddAsync(_mapper.Map<BookDto, Book>(book));
 
                 return Ok();
             }
@@ -105,7 +105,7 @@ namespace LibApp.Controllers.Api
 
         // Put api/books/{id}
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Update(int id, Book book)
+        public async Task<ActionResult> Update(int id, BookDto book)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace LibApp.Controllers.Api
                 if (bookToUpdate == null)
                     return NotFound($"Book with Id = {id} not found");
 
-                await _bookRep.UpdateAsync(book);
+                await _bookRep.UpdateAsync(_mapper.Map<BookDto, Book>(book));
                 return Ok();
             }
             catch (Exception)

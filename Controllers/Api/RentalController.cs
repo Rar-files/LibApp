@@ -1,6 +1,8 @@
 ﻿using LibApp.Data;
 using LibApp.Models;
+using LibApp.Dtos;
 using LibApp.Respositories;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -15,10 +17,13 @@ namespace LibApp.Controllers.Api
     public class RentalController : ControllerBase
     {
         private readonly RentalRepository _rentalsRep;
-    
-        public RentalController(ApplicationDbContext context)
+
+        private IMapper _mapper { get; }
+
+        public RentalController(ApplicationDbContext context, IMapper mapper)
         {
             _rentalsRep = new RentalRepository(context);
+            _mapper = mapper;
         }
 
         // GET api/Rentals/
@@ -26,8 +31,12 @@ namespace LibApp.Controllers.Api
         public async Task<ActionResult<IEnumerable<Rental>>> GetRentals()
         {
             try
-            {
-                return (await _rentalsRep.GetAsync()).ToList();
+            {   
+                var rentals = (await _rentalsRep.GetAsync())
+                .ToList()
+                .Select(_mapper.Map<Rental, RentalDto>);
+
+                return Ok(rentals);
             }
             catch (Exception)
             {
@@ -45,7 +54,7 @@ namespace LibApp.Controllers.Api
                 var result = await _rentalsRep.GetByIdAsync(id);
                 if (result == null) return NotFound();
 
-                return result;
+                return Ok(_mapper.Map<Rental, RentalDto>(result));
             }
             catch (Exception)
             {
@@ -77,14 +86,14 @@ namespace LibApp.Controllers.Api
 
         // Post api/Rentals/
         [HttpPost]
-        public async Task<ActionResult> Add(Rental Rental)
+        public async Task<ActionResult> Add(RentalDto rental)
         {
             try
             {
-                if (Rental == null)
+                if (rental == null)
                     return BadRequest();
 
-                await _rentalsRep.AddAsync(Rental);
+                await _rentalsRep.AddAsync(_mapper.Map<RentalDto, Rental>(rental));
 
                 return Ok();
             }
@@ -97,11 +106,11 @@ namespace LibApp.Controllers.Api
 
         // Put api/Rentals/{id}
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Update(int id, Rental Rental)
+        public async Task<ActionResult> Update(int id, RentalDto rental)
         {
             try
             {
-                if (id != Rental.Id)
+                if (id != rental.Id)
                     return BadRequest("Rental ID mismatch");
 
                 var RentalToUpdate = await _rentalsRep.GetByIdAsync(id);
@@ -109,7 +118,7 @@ namespace LibApp.Controllers.Api
                 if (RentalToUpdate == null)
                     return NotFound($"Rental with Id = {id} not found");
 
-                await _rentalsRep.UpdateAsync(Rental);
+                await _rentalsRep.UpdateAsync(_mapper.Map<RentalDto, Rental>(rental));
                 return Ok();
             }
             catch (Exception)

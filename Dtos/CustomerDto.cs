@@ -9,7 +9,7 @@ namespace LibApp.Dtos
 {
     public class CustomerDto
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
