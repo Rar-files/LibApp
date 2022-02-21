@@ -14,29 +14,29 @@ namespace LibApp.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class RentalController : ControllerBase
+    public class CustomersController : ControllerBase
     {
-        private readonly RentalRepository _rentalsRep;
+        private readonly CustomersRepository _customersRep;
 
         private IMapper _mapper { get; }
 
-        public RentalController(ApplicationDbContext context, IMapper mapper)
+        public CustomersController(ApplicationDbContext context, IMapper mapper)
         {
-            _rentalsRep = new RentalRepository(context);
+            _customersRep = new CustomersRepository(context);
             _mapper = mapper;
         }
 
-        // GET api/Rentals/
+        // GET api/Customers/
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Rental>>> GetRentals()
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomers()
         {
             try
-            {   
-                var rentals = (await _rentalsRep.GetAsync())
+            {
+                var customers = (await _customersRep.GetAsync())
                 .ToList()
-                .Select(_mapper.Map<Rental, RentalDto>);
+                .Select(_mapper.Map<Customer, CustomerDto>);
 
-                return Ok(rentals);
+                return Ok(customers);
             }
             catch (Exception)
             {
@@ -45,16 +45,16 @@ namespace LibApp.Controllers.Api
             }
         }
 
-        // GET api/Rentals/{id}
+        // GET api/Customers/{id}
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<Rental>> GetRentalById(int id)
+        public async Task<ActionResult<Customer>> GetCustomerById(int id)
         {
             try
             {
-                var result = await _rentalsRep.GetByIdAsync(id);
+                var result = await _customersRep.GetByIdAsync(id);
                 if (result == null) return NotFound();
 
-                return Ok(_mapper.Map<Rental, RentalDto>(result));
+                return Ok(_mapper.Map<Customer, CustomerDto>(result));
             }
             catch (Exception)
             {
@@ -63,18 +63,18 @@ namespace LibApp.Controllers.Api
             }
         }
 
-        // Delete api/Rentals/{id}
+        // Delete api/Customers/{id}
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
             try
             {
-                var RentalToDelete = await _rentalsRep.GetByIdAsync(id);
+                var CustomerToDelete = await _customersRep.GetByIdAsync(id);
 
-                if (RentalToDelete == null)
-                    return NotFound($"Rental with Id = {id} not found");
+                if (CustomerToDelete == null)
+                    return NotFound($"Customer with Id = {id} not found");
 
-                await _rentalsRep.DeleteAsync(id);
+                await _customersRep.DeleteAsync(CustomerToDelete);
                 return Ok();
             }
             catch (Exception)
@@ -84,16 +84,16 @@ namespace LibApp.Controllers.Api
             }
         }
 
-        // Post api/Rentals/
+        // Post api/Customers/
         [HttpPost]
-        public async Task<ActionResult> Add(RentalDto rental)
+        public async Task<ActionResult> Add(CustomerDto customer)
         {
             try
             {
-                if (rental == null)
+                if (customer == null)
                     return BadRequest();
 
-                await _rentalsRep.AddAsync(_mapper.Map<RentalDto, Rental>(rental));
+                await _customersRep.AddAsync(_mapper.Map<CustomerDto,Customer>(customer));
 
                 return Ok();
             }
@@ -104,21 +104,21 @@ namespace LibApp.Controllers.Api
             }
         }
 
-        // Put api/Rentals/{id}
+        // Put api/Customers/{id}
         [HttpPut("{id:int}")]
-        public async Task<ActionResult> Update(int id, RentalDto rental)
+        public async Task<ActionResult> Update(int id, CustomerDto customer)
         {
             try
             {
-                if (id != rental.Id)
-                    return BadRequest("Rental ID mismatch");
+                if (id != customer.Id)
+                    return BadRequest("Customer ID mismatch");
 
-                var RentalToUpdate = await _rentalsRep.GetByIdAsync(id);
+                var CustomerToUpdate = await _customersRep.GetByIdAsync(id);
 
-                if (RentalToUpdate == null)
-                    return NotFound($"Rental with Id = {id} not found");
+                if (CustomerToUpdate == null)
+                    return NotFound($"Customer with Id = {id} not found");
 
-                await _rentalsRep.UpdateAsync(_mapper.Map<RentalDto, Rental>(rental));
+                await _customersRep.UpdateAsync(_mapper.Map<CustomerDto,Customer>(customer));
                 return Ok();
             }
             catch (Exception)

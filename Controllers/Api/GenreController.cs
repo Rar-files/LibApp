@@ -16,13 +16,13 @@ namespace LibApp.Controllers.Api
     [ApiController]
     public class GenreController : ControllerBase
     {
-        private readonly GenreRepository _genresRep;
+        private readonly GenresRepository _genresRep;
 
         private IMapper _mapper { get; }
 
         public GenreController(ApplicationDbContext context, IMapper mapper)
         {
-            _genresRep = new GenreRepository(context);
+            _genresRep = new GenresRepository(context);
             _mapper = mapper;
         }
 
@@ -74,7 +74,7 @@ namespace LibApp.Controllers.Api
                 if (GenreToDelete == null)
                     return NotFound($"Genre with Id = {id} not found");
 
-                await _genresRep.DeleteAsync(id);
+                await _genresRep.DeleteAsync(GenreToDelete);
                 return Ok();
             }
             catch (Exception)
