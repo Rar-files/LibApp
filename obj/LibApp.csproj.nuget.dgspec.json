@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\LibApp.csproj": {}
+    "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\ASP.NET\\LibApp\\LibApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\LibApp.csproj": {
+    "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\ASP.NET\\LibApp\\LibApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\LibApp.csproj",
+        "projectUniqueName": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\ASP.NET\\LibApp\\LibApp.csproj",
         "projectName": "LibApp",
-        "projectPath": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\LibApp.csproj",
+        "projectPath": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\ASP.NET\\LibApp\\LibApp.csproj",
         "packagesPath": "C:\\Users\\dwidl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\LibApp\\obj\\",
+        "outputPath": "C:\\Users\\dwidl\\source\\repos\\studies\\Semestr_5\\p.zal\\ASP.NET\\LibApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -72,6 +72,12 @@
               "target": "Package",
               "version": "[5.0.9, )"
             },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.9, )"
@@ -79,6 +85,10 @@
             "Microsoft.EntityFrameworkCore.Tools": {
               "target": "Package",
               "version": "[5.0.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             },
             "Microsoft.jQuery.Unobtrusive.Validation": {
               "target": "Package",
