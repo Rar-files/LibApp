@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LibApp.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Owner, StoreManager")]
     public class RentalsController : Controller
     {
         public IActionResult New()
