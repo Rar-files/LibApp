@@ -8,9 +8,11 @@ using LibApp.ViewModels;
 using LibApp.Respositories;
 using LibApp.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace LibApp.Controllers
 {
+    [Authorize]
     public class BooksController : Controller
     {
         private readonly BookRepository _bookRep;
